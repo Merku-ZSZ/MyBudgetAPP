@@ -1,0 +1,5 @@
+CREATE TABLE expenses(
+   id INT PRIMARY KEY AUTO_INCREMENT,
+   value DOUBLE,
+   date DATE
+);
