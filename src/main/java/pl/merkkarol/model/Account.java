@@ -12,6 +12,16 @@ public class Account {
     private double accountBalance;
     private double operations;
     private Date date;
+public Account(){ }
+public Account(double accountBalance, double operations){
+    this.accountBalance = accountBalance;
+    this.operations = operations;
+    this.date = new Date();
+}
+
+    public double getAccountBalance() {
+        return accountBalance;
+    }
 
     public int getId() {
         return id;

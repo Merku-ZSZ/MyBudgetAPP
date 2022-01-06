@@ -1,15 +1,35 @@
 package pl.merkkarol.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "expense_category")
+@Table(name = "categories_of_expense")
 public class CategoriesOfExpense {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
     private String categoryName;
-    @OneToMany
-    private Set<Expenses> expensesFromCategory;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    @JsonIgnore
+    private Set<Expense> expenseFromCategory;
+    public CategoriesOfExpense(){}
+    public CategoriesOfExpense(String categoryName){
+        this.categoryName = categoryName;
+    }
+
+
+
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public Set<Expense> getExpenseFromCategory() {
+        return expenseFromCategory;
+    }
 }

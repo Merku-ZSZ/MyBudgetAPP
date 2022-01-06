@@ -12,6 +12,7 @@ public class Planner {
     private CategoriesOfExpense category;
     private double assumedValue;
     @OneToMany
-    private Set<Expenses> expenses;
+    private Set<Expense> expens;
     private double availableFunds;
+public Planner(){}
 }

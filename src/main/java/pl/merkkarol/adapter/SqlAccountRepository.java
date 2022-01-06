@@ -7,4 +7,5 @@ import pl.merkkarol.model.AccountRepository;
 
 @Repository
 public interface SqlAccountRepository extends JpaRepository<Account, Integer>, AccountRepository {
+
 }
