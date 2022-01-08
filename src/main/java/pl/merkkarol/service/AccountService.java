@@ -1,10 +1,12 @@
 package pl.merkkarol.service;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import pl.merkkarol.model.Account;
 import pl.merkkarol.model.AccountRepository;
 import pl.merkkarol.model.Expense;
+import pl.merkkarol.model.Income;
+
+import java.util.List;
 
 @Service
 public class AccountService {
@@ -26,6 +28,20 @@ public class AccountService {
             Account account = new Account(value, value);
             return repository.save(account);
         }
+    }
+    public Account addIncomeOperation(Income income){
+        if(!repository.findAll().isEmpty()){
+            Account lastAccount = repository.findById(repository.findIdOfLastRecord());
+            double actualBalance = lastAccount.getAccountBalance() + income.getIncomeAmount();
+            Account account = new Account(actualBalance, income.getIncomeAmount());
+            return repository.save(account);
+        }else {
+            Account account = new Account(income.getIncomeAmount(), income.getIncomeAmount());
+            return repository.save(account);
+        }
+    }
+    public List<Account> getAccount(){
+        return repository.findAll();
     }
 
 }

@@ -27,9 +27,17 @@ public class ExpensesController {
         Expense result = service.createExpense(input);
         return ResponseEntity.created(URI.create("/" + result.getId())).body(result);
     }
-
     @GetMapping
     ResponseEntity<List<Expense>> findAll(){
        return ResponseEntity.ok(service.findAllExpense());
+    }
+    @GetMapping("/{category}")
+    ResponseEntity<List<Expense>> getExpenseByCategory(@PathVariable String category){
+        return ResponseEntity.ok(service.findByCategoryName(category));
+    }
+    @DeleteMapping("/{id}")
+    ResponseEntity deleteExpenseById(@PathVariable int id){
+        service.deleteExpense(id);
+        return ResponseEntity.ok().build();
     }
 }

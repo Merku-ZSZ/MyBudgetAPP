@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.merkkarol.model.CategoriesOfExpense;
+import pl.merkkarol.model.Expense;
 import pl.merkkarol.service.CategoriesService;
 
 import javax.validation.Valid;
@@ -30,4 +31,5 @@ public class CategoriesOfExpenseController {
         logger.info("Exposing all the categories");
         return ResponseEntity.ok(service.findAll());
     }
+
 }

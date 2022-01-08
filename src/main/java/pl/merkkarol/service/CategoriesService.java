@@ -28,16 +28,11 @@ public class CategoriesService {
             return repository.getByCategoryName(category.getCategoryName());
         }
     }
-    public CategoriesOfExpense getCategory(String name){
-        if(repository.existsByCategoryName(name)){
-            return repository.getByCategoryName(name);
-        }
-        else {
-            throw new IllegalArgumentException("Category " + name +" not fount");
-        }
-    }
     public List<CategoriesOfExpense> findAll(){
         return repository.findAll();
+    }
+    boolean existsByCategoryName(String categoryName){
+        return repository.existsByCategoryName(categoryName);
     }
 
 }

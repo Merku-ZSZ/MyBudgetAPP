@@ -26,4 +26,12 @@ public Account(double accountBalance, double operations){
     public int getId() {
         return id;
     }
+
+    public double getOperations() {
+        return operations;
+    }
+
+    public Date getDate() {
+        return date;
+    }
 }

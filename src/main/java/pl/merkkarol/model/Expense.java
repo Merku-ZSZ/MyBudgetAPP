@@ -18,6 +18,7 @@ public class Expense{
     @ManyToOne
     @JoinColumn(name = "category_name")
     private CategoriesOfExpense category;
+
     public Expense(){}
 
     @PrePersist

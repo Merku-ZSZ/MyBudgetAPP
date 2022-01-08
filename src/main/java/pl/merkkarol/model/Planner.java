@@ -1,7 +1,8 @@
 package pl.merkkarol.model;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Planner {
@@ -11,8 +12,32 @@ public class Planner {
     @OneToOne
     private CategoriesOfExpense category;
     private double assumedValue;
-    @OneToMany
-    private Set<Expense> expens;
     private double availableFunds;
+
 public Planner(){}
+    public Planner(CategoriesOfExpense category, double assumedValue){
+    this.category = category;
+    this.assumedValue = assumedValue;
+    this.availableFunds = assumedValue;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public CategoriesOfExpense getCategory() {
+        return category;
+    }
+
+    public double getAssumedValue() {
+        return assumedValue;
+    }
+
+    public double getAvailableFunds() {
+        return availableFunds;
+    }
+
+    public void setAvailableFunds(double availableFunds) {
+        this.availableFunds = availableFunds;
+    }
 }

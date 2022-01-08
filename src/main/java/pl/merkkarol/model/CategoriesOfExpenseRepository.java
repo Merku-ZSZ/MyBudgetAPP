@@ -7,4 +7,5 @@ public interface CategoriesOfExpenseRepository {
     CategoriesOfExpense getByCategoryName(String name);
     List<CategoriesOfExpense> findAll();
     CategoriesOfExpense save(CategoriesOfExpense entity);
+    List<CategoriesOfExpense> findByCategoryName(String name);
 }
