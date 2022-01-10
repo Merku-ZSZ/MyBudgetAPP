@@ -1,13 +1,11 @@
 package pl.merkkarol.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "expenses")
-public class Expense{
+public class Expense {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -18,8 +16,21 @@ public class Expense{
     @ManyToOne
     @JoinColumn(name = "category_name")
     private CategoriesOfExpense category;
+    @ManyToOne
+    @JoinColumn(name = "planner_id")
+    private Planner planner;
+    @OneToOne
+    @JoinColumn(name = "account_id", unique = true)
+    private Account account;
 
-    public Expense(){}
+
+    public void setPlanner(Planner planner) {
+        this.planner = planner;
+    }
+
+    public Planner getPlanner() {
+        return planner;
+    }
 
     @PrePersist
     public void addDate(){
@@ -34,13 +45,15 @@ public class Expense{
         return value;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
     public CategoriesOfExpense getCategory() {
         return category;
     }
 
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 
+    public Account getAccount() {
+        return account;
+    }
 }

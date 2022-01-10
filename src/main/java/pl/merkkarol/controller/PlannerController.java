@@ -2,6 +2,7 @@ package pl.merkkarol.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.merkkarol.model.Expense;
 import pl.merkkarol.model.Planner;
 import pl.merkkarol.service.PlannerService;
 
@@ -25,5 +26,10 @@ private final PlannerService service;
     @GetMapping
     ResponseEntity<List<Planner>> getPlanner(){
         return ResponseEntity.ok(service.getPlanner());
+    }
+    @PatchMapping("/{id}")
+    ResponseEntity<Planner> updatePlan(@PathVariable int id, @RequestBody double toUpdate){
+     return ResponseEntity.ok(service.updatePlan(id, toUpdate));
+
     }
 }

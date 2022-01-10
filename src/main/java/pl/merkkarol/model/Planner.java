@@ -10,9 +10,12 @@ public class Planner {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @OneToOne
+    @JoinColumn(name = "category_name", unique = true)
     private CategoriesOfExpense category;
     private double assumedValue;
     private double availableFunds;
+    @OneToMany(mappedBy = "id")
+    private List<Expense> expenseList = new ArrayList<>();
 
 public Planner(){}
     public Planner(CategoriesOfExpense category, double assumedValue){
@@ -20,9 +23,16 @@ public Planner(){}
     this.assumedValue = assumedValue;
     this.availableFunds = assumedValue;
     }
-
     public int getId() {
         return id;
+    }
+
+    public void addExpenseToList(Expense expense){
+    this.expenseList.add(expense);
+    }
+
+    public void setAssumedValue(double assumedValue) {
+        this.assumedValue = assumedValue;
     }
 
     public CategoriesOfExpense getCategory() {
@@ -40,4 +50,5 @@ public Planner(){}
     public void setAvailableFunds(double availableFunds) {
         this.availableFunds = availableFunds;
     }
+
 }

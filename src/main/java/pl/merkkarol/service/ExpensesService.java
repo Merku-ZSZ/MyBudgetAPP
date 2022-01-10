@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import pl.merkkarol.model.Expense;
 import pl.merkkarol.model.ExpenseRepository;
+import pl.merkkarol.model.Planner;
 
 import java.util.List;
 
@@ -22,9 +23,10 @@ public class ExpensesService {
         this.plannerService = plannerService;
     }
     public Expense createExpense(Expense expense){
-        logger.info("In expense service");
+        logger.info("In expense service. Create expense");
         categoriesService.createCategory(expense.getCategory());
-        accountService.addExpenseOperation(expense);
+        expense.setAccount(accountService.addExpenseOperation(expense));
+        expense.setPlanner(plannerService.addExpenseToPlanner(expense));
         return repository.save(expense);
     }
     public List<Expense> findAllExpense(){
@@ -41,7 +43,20 @@ public class ExpensesService {
     }
     public void deleteExpense(int id){
       if(repository.existsById(id)){
-        repository.deleteById(id);}
+          Expense expense = repository.findById(id);
+         Planner planner = expense.getPlanner();
+         //Delete expense if expense does not include planner
+         if(planner == null){
+             repository.deleteById(id);
+             accountService.deleteAccountPosition(expense.getAccount().getId());
+         }
+         else {
+         planner.setAvailableFunds(planner.getAvailableFunds() + expense.getValue());
+         plannerService.savePlanner(planner);
+         repository.deleteById(id);
+             accountService.deleteAccountPosition(expense.getAccount().getId());
+         }
+      }
       else{
           throw new IllegalArgumentException("Expense with id: " + id + " does not exists!" );
       }

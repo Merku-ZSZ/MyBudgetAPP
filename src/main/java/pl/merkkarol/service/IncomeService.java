@@ -17,7 +17,7 @@ public class IncomeService {
         this.accountService = accountService;
     }
     public Income addIncome(Income income){
-        accountService.addIncomeOperation(income);
+        income.setAccount(accountService.addIncomeOperation(income));
         return repository.save(income);
     }
     public List<Income> findAllIncome(){

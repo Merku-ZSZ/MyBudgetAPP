@@ -43,5 +43,8 @@ public class AccountService {
     public List<Account> getAccount(){
         return repository.findAll();
     }
+    public void deleteAccountPosition(int id){
+        repository.deleteById(id);
+    }
 
 }

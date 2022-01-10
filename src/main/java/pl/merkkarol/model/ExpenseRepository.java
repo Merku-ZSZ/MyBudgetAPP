@@ -9,4 +9,5 @@ public interface ExpenseRepository {
     boolean existsByCategoryCategoryName(String categoryName);
     void deleteById(int id);
     boolean existsById(int id);
+    Expense findById(int id);
 }

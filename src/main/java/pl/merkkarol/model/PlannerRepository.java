@@ -7,4 +7,6 @@ public interface PlannerRepository {
     Planner save(Planner planner);
     Planner findPlannerByCategoryCategoryName(String name);
     List<Planner> findAll();
+    boolean existsPlannerById(int id);
+    Planner findPlannerById(int id);
 }

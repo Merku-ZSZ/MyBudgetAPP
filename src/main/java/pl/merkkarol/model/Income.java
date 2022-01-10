@@ -1,8 +1,6 @@
 package pl.merkkarol.model;
 
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -15,6 +13,9 @@ public class Income {
     private double incomeAmount;
     private Date date;
     private String incomeCategory;
+    @OneToOne
+    @JoinColumn(name = "account_id", unique = true)
+    private Account account;
 
 
     public Income(){}
@@ -35,13 +36,11 @@ public class Income {
         return incomeAmount;
     }
 
-    public Date getDate() {
-        return date;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
-    public String getIncomeCategory() {
-        return incomeCategory;
+    public Account getAccount() {
+        return account;
     }
-
-
 }
