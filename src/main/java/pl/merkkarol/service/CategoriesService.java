@@ -18,6 +18,10 @@ public class CategoriesService {
     }
 
     public CategoriesOfExpense createCategory(CategoriesOfExpense category){
+        if(category.getCategoryName().isEmpty()){
+            throw new IllegalStateException("Category name can not be empty");
+        }
+        else {
         category.setCategoryName(category.getCategoryName().toUpperCase());
        if(!repository.existsByCategoryName(category.getCategoryName())){
           CategoriesOfExpense result = repository.save(category);
@@ -27,12 +31,17 @@ public class CategoriesService {
            logger.warn("Category " + category.getCategoryName() + " already exists.");
             return repository.getByCategoryName(category.getCategoryName());
         }
+        }
     }
     public List<CategoriesOfExpense> findAll(){
         return repository.findAll();
     }
     boolean existsByCategoryName(String categoryName){
+        if(categoryName.isEmpty()){
+            throw new IllegalStateException("Category name can not be empty");
+        }else {
         return repository.existsByCategoryName(categoryName);
+        }
     }
 
 }
