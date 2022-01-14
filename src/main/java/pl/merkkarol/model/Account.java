@@ -27,6 +27,10 @@ public Account(double accountBalance, double operations){
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public double getOperations() {
         return operations;
     }
@@ -34,4 +38,5 @@ public Account(double accountBalance, double operations){
     public Date getDate() {
         return date;
     }
+
 }

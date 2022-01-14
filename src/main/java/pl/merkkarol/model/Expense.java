@@ -56,4 +56,16 @@ public class Expense {
     public Account getAccount() {
         return account;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
+
+    public void setCategory(CategoriesOfExpense category) {
+        this.category = category;
+    }
 }

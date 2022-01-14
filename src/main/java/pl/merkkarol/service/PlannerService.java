@@ -37,7 +37,6 @@ public class PlannerService {
                 serviceCategory.createCategory(toCreate.getCategory());
                 result = new Planner(toCreate.getCategory(), toCreate.getAssumedValue());
                 return  plannerRepository.save(result);
-
             }
         }
     public List<Planner> getPlanner() {

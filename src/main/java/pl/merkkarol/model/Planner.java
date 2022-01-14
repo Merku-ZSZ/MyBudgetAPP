@@ -51,4 +51,11 @@ public Planner(){}
         this.availableFunds = availableFunds;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Expense> getExpenseList() {
+        return expenseList;
+    }
 }
