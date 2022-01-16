@@ -47,7 +47,7 @@ class CategoriesServiceTest {
     }
         @Test
     void createCategory_OK(){
-        //given
+        //give
         CategoriesOfExpense category = new CategoriesOfExpense("szkoła");
         //when
         int after = repository.findAll().size();

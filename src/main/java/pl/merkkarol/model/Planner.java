@@ -1,5 +1,7 @@
 package pl.merkkarol.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ public class Planner {
     private double assumedValue;
     private double availableFunds;
     @OneToMany(mappedBy = "id")
+    @JsonIgnore
     private List<Expense> expenseList = new ArrayList<>();
 
 public Planner(){}
