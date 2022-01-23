@@ -61,4 +61,10 @@ public class ExpensesService {
           throw new IllegalArgumentException("Expense with id: " + id + " does not exists!" );
       }
     }
+    public boolean existsByCategoryName(String name){
+        return repository.existsByCategoryCategoryName(name);
+    }
+    public boolean existsById(int id){
+        return repository.existsById(id);
+    }
 }

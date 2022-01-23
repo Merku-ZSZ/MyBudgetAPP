@@ -54,7 +54,7 @@ public class PlannerService {
             return plannerRepository.save(planner);
         }
         else{
-         throw new IllegalArgumentException("Planner with given id does not exists!");
+         throw new IllegalArgumentException("Planner with given category name does not exists!");
         }
     }
 

@@ -29,6 +29,9 @@ private final PlannerService service;
     }
     @PatchMapping("/{id}")
     ResponseEntity<Planner> updatePlan(@PathVariable int id, @RequestBody double toUpdate){
+        if(!service.existsPlannerById(id)){
+            return  ResponseEntity.notFound().build();
+        }
      return ResponseEntity.ok(service.updatePlan(id, toUpdate));
 
     }

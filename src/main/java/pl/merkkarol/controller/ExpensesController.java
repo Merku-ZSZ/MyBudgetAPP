@@ -34,10 +34,17 @@ public class ExpensesController {
     }
     @GetMapping("/{category}")
     ResponseEntity<List<Expense>> getExpenseByCategory(@PathVariable String category){
-        return ResponseEntity.ok(service.findByCategoryName(category));
+        String categoryName = category.toUpperCase();
+        if(!service.existsByCategoryName(categoryName)){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(service.findByCategoryName(categoryName));
     }
     @DeleteMapping("/{id}")
     ResponseEntity deleteExpenseById(@PathVariable int id){
+        if(!service.existsById(id)){
+            return  ResponseEntity.notFound().build();
+        }
         service.deleteExpense(id);
         return ResponseEntity.ok().build();
     }
